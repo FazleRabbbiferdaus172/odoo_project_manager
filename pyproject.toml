@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "odoo_project_manager"
+version = "1.0.0"
+
+[project.scripts]
+odopm = "src.odoo_project_manager.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pyright]
+extraPaths = ["src"]
+include = ["src"]

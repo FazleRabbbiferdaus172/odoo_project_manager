@@ -4,7 +4,8 @@ from src.odoo_project_manager.strategy.strategy import Strategy
 
 class PycharmStrategy(Strategy):
 
-    def __init__(self, options: Options):
+    def __init__(self, manager, options: Options):
+        self.manager = manager
         self.options = options
 
     def execute(self):

@@ -1,7 +1,7 @@
 class Options:
 
     def __init__(self):
-        self.target_ide: str | None = None
+        self.target_ide: str = "pycharm"
         self.source_location = None
         self.output_location = None
         self.project_name = None

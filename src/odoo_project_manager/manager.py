@@ -1,16 +1,30 @@
 from src.odoo_project_manager.options import Options
+from src.odoo_project_manager.grammer import CommandLibraryFactory
 from src.odoo_project_manager.strategy.strategy import Strategy
 from src.odoo_project_manager.strategy.pycharm import PycharmStrategy
+from src.odoo_project_manager.exception import InvalidCommandError
 
 
 class Manager:
+    command_library = CommandLibraryFactory.get_command_library()
 
     def __init__(self, options):
-        import pdb
-
-        pdb.set_trace()
         self.options = Options.auto_built(options)
+        self.commands = []
         self._manager_strategy: Strategy | None = None
+
+    def varify_command(self, commands):
+        if self.command_library.is_valid_rule_set(commands):
+            return True
+        else:
+            raise InvalidCommandError(f"{commands} is not a valid set of command")
+
+    def set_command(self, commands):
+        try:
+            self.varify_command(commands)
+            self.commands = commands
+        except InvalidCommandError as error:
+            raise error
 
     @property
     def manager_strategy(self):
@@ -29,7 +43,11 @@ class Manager:
             self.manager_strategy.execute()
 
     @classmethod
-    def get_instance(cls, options):
+    def get_instance(cls, options, command):
         ins = cls(options)
+        try:
+            ins.set_command(command)
+        except InvalidCommandError as error:
+            raise error
         ins._config_initial_manager()
         return ins

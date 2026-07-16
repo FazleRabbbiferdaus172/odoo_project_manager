@@ -12,5 +12,5 @@ def cli():
     import pdb
 
     pdb.set_trace()
-    manager = Manager.get_instance(arg_options)
+    manager = Manager.get_instance(arg_options, arg_vals)
     manager.execute()

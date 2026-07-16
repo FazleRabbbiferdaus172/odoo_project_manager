@@ -66,6 +66,34 @@ class CommandBook(CommandRule):
             return False
 
 
+class CommandLibrary:
+
+    def __init__(self) -> None:
+        self._books = {}
+
+    def is_valid_rule_set(self, command_list):
+        for book in self._books.values():
+            if book.is_valid_rule_set(command_list):
+                return True
+        return False
+
+    def add_book(self, name, book: CommandBook, forced=False):
+        if name in self._books and not forced:
+            raise Exception("Book already exists")
+        self._books[name] = book
+        return self
+
+
+class CommandLibraryFactory:
+
+    @staticmethod
+    def get_command_library():
+        cl = CommandLibrary()
+        cb_create = CommandBook("create").add_command(Command("project"))
+        cl.add_book("create", cb_create)
+        return cl
+
+
 if __name__ == "__main__":
     cb = (
         CommandBook("a")
@@ -77,3 +105,4 @@ if __name__ == "__main__":
     rule_set = cb.get_valid_rule_set()
     print(rule_set)
     cb.print_grammer()
+    cl = CommandLibraryFactory.get_command_library()

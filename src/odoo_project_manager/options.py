@@ -3,9 +3,17 @@ class Options:
     def __init__(self):
         self.target_ide: str = "pycharm"
         self.source_location = None
-        self.output_location = None
-        self.project_name = None
+        self.output_location = "."
+        self.project_name = "odoo_project"
         self.edition = "Enterprise"
+
+    def __str__(self) -> str:
+        result = ""
+        for key, val in self.__dict__.items():
+            if val:
+                result += f"{key}: {val}\n"
+
+        return result
 
     @classmethod
     def builder(cls) -> "Builder":

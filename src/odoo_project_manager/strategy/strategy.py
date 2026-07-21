@@ -1,7 +1,7 @@
 import os
 import subprocess
 import logging
-from abc import ABC
+from abc import ABC, abstractmethod
 
 from src.odoo_project_manager.options import Options
 
@@ -38,6 +38,8 @@ class Strategy(ABC):
         self.create_directory()
         self.pull_source()
         self.create_virtual_env()
+        self.install_requirements()
+        self.copy_configuration_file()
 
     def pull_source(self):
         git_pull_script = os.path.join(self.bin_directory, "git_pull.sh")
@@ -50,8 +52,30 @@ class Strategy(ABC):
         )
 
     def create_virtual_env(self):
+        script_path = os.path.join(self.bin_directory, "create_virtual_env.sh")
+        subprocess.call([script_path, self.project_path])
+
+    def install_requirements(self):
+        pass
+
+    def copy_configuration_file(self):
         pass
 
     def execute(self):
+        self.pre_execute()
         if self.manager.commands == ["create", "project"]:
             self.run_create()
+
+        self.post_execute()
+
+    def pre_execute(self):
+        """
+        ment to be overriden by concreate classes
+        """
+        pass
+
+    def post_execute(self):
+        """
+        ment to be overriden by concreate classes
+        """
+        pass

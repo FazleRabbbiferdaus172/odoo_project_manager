@@ -56,7 +56,9 @@ class Strategy(ABC):
         subprocess.call([script_path, self.project_path])
 
     def install_requirements(self):
-        pass
+        script_path = os.path.join(self.bin_directory, "get_odoo_source.sh")
+        venv_path = os.path.join(self.project_path, ".venv", "bin")
+        subprocess.call([script_path, self.options.version, venv_path])
 
     def copy_configuration_file(self):
         pass

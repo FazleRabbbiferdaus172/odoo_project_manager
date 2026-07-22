@@ -6,6 +6,7 @@ class Options:
         self.output_location = "."
         self.project_name = "odoo_project"
         self.edition = "Enterprise"
+        self.version = "18"
 
     def __str__(self) -> str:
         result = ""
@@ -31,6 +32,8 @@ class Options:
                 builder.set_edition(v)
             elif k in ["-n", "--name"]:
                 builder.set_project_name(v)
+            elif k in ["-O", "--odoo-version"]:
+                builder.set_version(v)
 
         return builder.build()
 
@@ -53,6 +56,9 @@ class Options:
 
         def set_edition(self, edition):
             self._options.edition = edition
+
+        def set_version(self, version):
+            self._options.version = version
 
         def build(self):
             return self._options

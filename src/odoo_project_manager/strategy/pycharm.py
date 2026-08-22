@@ -34,7 +34,7 @@ class PycharmStrategy(Strategy):
             "jdk_name": f"Python ({self.options.project_name})",
             "project_name": self.options.project_name,
         }
-        breakpoint()
+        # breakpoint()
         for root, dirs, files in os.walk(src_dir_path):
             for file in files:
                 # Construct the full absolute or relative path to the source file
@@ -71,7 +71,7 @@ class PycharmStrategy(Strategy):
                         f.write(rendered_content)
 
                     print(f"Rendered: {final_dest_path}")
-        breakpoint()
+        # breakpoint()
 
     def execute(self):
         super().execute()

@@ -24,9 +24,9 @@ class PycharmStrategy(Strategy):
     def _generate_from_template(self, src_dir_path, dest_dir_path):
         env = Environment(loader=FileSystemLoader(src_dir_path))
         idea_module_path = os.path.join(self.project_path, ".idea")
-        relative_odoo_community_path = os.path.relpath(idea_module_path, self.odoo_path)
+        relative_odoo_community_path = os.path.relpath(self.odoo_path, idea_module_path)
         # Todo: change this
-        relative_conf_path = os.path.relpath(idea_module_path, self.odoo_path)
+        relative_conf_path = os.path.relpath(self.odoo_path, idea_module_path)
         context_vars = {
             "relative_conf_path": relative_conf_path,
             "relative_odoo_community_path": relative_odoo_community_path,
@@ -34,7 +34,6 @@ class PycharmStrategy(Strategy):
             "jdk_name": f"Python ({self.options.project_name})",
             "project_name": self.options.project_name,
         }
-        # breakpoint()
         for root, dirs, files in os.walk(src_dir_path):
             for file in files:
                 # Construct the full absolute or relative path to the source file

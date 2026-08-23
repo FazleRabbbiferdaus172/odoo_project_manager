@@ -1,8 +1,8 @@
-from src.odoo_project_manager.options import Options
-from src.odoo_project_manager.grammer import CommandLibraryFactory
-from src.odoo_project_manager.strategy.strategy import Strategy
-from src.odoo_project_manager.strategy.pycharm import PycharmStrategy
-from src.odoo_project_manager.exception import InvalidCommandError
+from odoo_project_manager.options import Options
+from odoo_project_manager.grammer import CommandLibraryFactory
+from odoo_project_manager.strategy.strategy import Strategy
+from odoo_project_manager.strategy.pycharm import PycharmStrategy
+from odoo_project_manager.exception import InvalidCommandError
 
 
 class Manager:

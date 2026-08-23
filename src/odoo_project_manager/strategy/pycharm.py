@@ -2,8 +2,8 @@ import os
 from jinja2 import Environment, FileSystemLoader
 
 
-from src.odoo_project_manager.options import Options
-from src.odoo_project_manager.strategy.strategy import Strategy
+from odoo_project_manager.options import Options
+from odoo_project_manager.strategy.strategy import Strategy
 
 
 class PycharmStrategy(Strategy):

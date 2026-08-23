@@ -2,7 +2,6 @@
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "odoo_project_manager"
 version = "1.0.0"
@@ -11,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-odopm = "src.odoo_project_manager.__main__:main"
+odopm = "odoo_project_manager.__main__:cli"
 
 [tool.setuptools.packages.find]
 where = ["src"]

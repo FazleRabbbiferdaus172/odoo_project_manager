@@ -1,7 +1,7 @@
 import sys
 import getopt
 
-from src.odoo_project_manager.manager import Manager
+from odoo_project_manager.manager import Manager
 
 
 def cli():

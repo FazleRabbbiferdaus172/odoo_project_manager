@@ -3,7 +3,7 @@ import subprocess
 import logging
 from abc import ABC, abstractmethod
 
-from src.odoo_project_manager.options import Options
+from odoo_project_manager.options import Options
 
 _logging = logging.getLogger(__name__)
 

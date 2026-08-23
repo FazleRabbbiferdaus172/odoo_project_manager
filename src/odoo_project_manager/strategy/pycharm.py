@@ -25,12 +25,17 @@ class PycharmStrategy(Strategy):
         env = Environment(loader=FileSystemLoader(src_dir_path))
         idea_module_path = os.path.join(self.project_path, ".idea")
         relative_odoo_community_path = os.path.relpath(self.odoo_path, idea_module_path)
-        # Todo: change this
         relative_conf_path = os.path.relpath(self.odoo_path, idea_module_path)
+        # Todo: update the following
+        relative_odoo_community_path = f"../src_odoo/odoo{self.options.version}/ce"
+        relative_odoo_enterprise_path = (
+            f"../src_odoo/odoo{self.options.version}/ee/enterprise"
+        )
+        relative_conf_path = "../conf"
         context_vars = {
             "relative_conf_path": relative_conf_path,
             "relative_odoo_community_path": relative_odoo_community_path,
-            "relative_odoo_enterprise_path": relative_odoo_community_path,
+            "relative_odoo_enterprise_path": relative_odoo_enterprise_path,
             "jdk_name": f"Python ({self.options.project_name})",
             "project_name": self.options.project_name,
         }

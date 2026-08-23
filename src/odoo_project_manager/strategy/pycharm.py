@@ -26,10 +26,10 @@ class PycharmStrategy(Strategy):
         idea_module_path = os.path.join(self.project_path, ".idea")
         relative_odoo_community_path = os.path.relpath(self.odoo_path, idea_module_path)
         relative_conf_path = os.path.relpath(self.odoo_path, idea_module_path)
-        # Todo: update the following
-        relative_odoo_community_path = f"../src_odoo/odoo{self.options.version}/ce"
+        # Todo: update the following ../scr_odoo/odoo18/ce
+        relative_odoo_community_path = f"../scr_odoo/odoo{self.options.version}/ce"
         relative_odoo_enterprise_path = (
-            f"../src_odoo/odoo{self.options.version}/ee/enterprise"
+            f"../scr_odoo/odoo{self.options.version}/ee"
         )
         relative_conf_path = "../conf"
         context_vars = {

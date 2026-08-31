@@ -8,8 +8,8 @@ from odoo_project_manager.strategy.strategy import Strategy
 
 class PycharmStrategy(Strategy):
 
-    def __init__(self, manager, options: Options):
-        super().__init__(manager, options)
+    def __init__(self, options: Options):
+        super().__init__(options)
 
     def run_create(self):
         super().run_create()
@@ -27,9 +27,9 @@ class PycharmStrategy(Strategy):
         relative_odoo_community_path = os.path.relpath(self.odoo_path, idea_module_path)
         relative_conf_path = os.path.relpath(self.odoo_path, idea_module_path)
         # Todo: update the following ../scr_odoo/odoo18/ce
-        relative_odoo_community_path = f"../scr_odoo/odoo{self.options.version}/ce"
+        relative_odoo_community_path = f"../scr_odoo/odoo{self.options.version}/ce/odoo"
         relative_odoo_enterprise_path = (
-            f"../scr_odoo/odoo{self.options.version}/ee"
+            f"../scr_odoo/odoo{self.options.version}/ee/enterprise"
         )
         relative_conf_path = "../conf"
         context_vars = {

@@ -3,14 +3,13 @@ import subprocess
 import logging
 from abc import ABC, abstractmethod
 
-from odoo_project_manager.options import Options
+# from odoo_project_manager.options import Options
 
 _logging = logging.getLogger(__name__)
 
 
 class Strategy(ABC):
-    def __init__(self, manager, options: Options):
-        self.manager = manager
+    def __init__(self, options: dict):
         self.options = options
         self.set_root_directory()
         self.set_bin_directory()
@@ -29,7 +28,7 @@ class Strategy(ABC):
         sets the root path of project to be created
         """
         self.project_path = os.path.join(
-            self.options.output_location, self.options.project_name
+            self.options["destination"], self.options["name"]
         )
 
     def set_bin_directory(self):
@@ -44,7 +43,7 @@ class Strategy(ABC):
         """
         get_odoo_source_script = os.path.join(self.bin_directory, "get_odoo_source.sh")
         resutl = subprocess.run(
-            [get_odoo_source_script, self.options.version],
+            [get_odoo_source_script, self.options["version"]],
             text=True,
             capture_output=True,
         )
@@ -73,14 +72,12 @@ class Strategy(ABC):
         """
         pull the source code of project in a sub project directory.
         """
-        to_clone_path = os.path.join(
-            self.project_path, self.options.project_name.upper()
-        )
+        to_clone_path = os.path.join(self.project_path, self.options["name"].upper())
         git_pull_script = os.path.join(self.bin_directory, "git_pull.sh")
         subprocess.call(
             [
                 git_pull_script,
-                self.options.source_location,
+                self.options["source"],
                 to_clone_path,
             ]
         )
@@ -105,9 +102,7 @@ class Strategy(ABC):
 
     def execute(self):
         self.pre_execute()
-        if self.manager.commands == ["create", "project"]:
-            self.run_create()
-
+        self.run_create()
         self.post_execute()
 
     def pre_execute(self):

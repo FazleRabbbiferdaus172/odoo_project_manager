@@ -6,12 +6,15 @@ build-backend = "setuptools.build_meta"
 name = "odoo_project_manager"
 version = "1.0.0"
 dependencies = [
-    "jinja2"
+    "jinja2",
+    "typer>=0.27.2",
 ]
 
 [project.scripts]
-odopm = "odoo_project_manager.app:cli"
+odopm = "odoo_project_manager.app:app"
 
 [tool.pyright]
+venvPath = "."
+venv = ".venv"
 extraPaths = ["src"]
 include = ["src"]

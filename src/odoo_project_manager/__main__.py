@@ -1,7 +1,7 @@
 def main():
-    from odoo_project_manager.app import cli
+    from odoo_project_manager.app import app
 
-    cli()
+    app()
 
 
 if __name__ == "__main__":

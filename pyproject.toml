@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,10 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-odopm = "odoo_project_manager.__main__:cli"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+odopm = "odoo_project_manager.app:cli"
 
 [tool.pyright]
 extraPaths = ["src"]

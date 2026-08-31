@@ -11,3 +11,7 @@ def cli():
     arg_options, arg_vals = getopt.gnu_getopt(args[1:], options, long_versions)
     manager = Manager.get_instance(arg_options, arg_vals)
     manager.execute()
+
+
+if __name__ == "__main__":
+    cli()
